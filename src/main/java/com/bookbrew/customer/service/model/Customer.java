@@ -3,8 +3,8 @@ package com.bookbrew.customer.service.model;
 import java.util.List;
 
 import com.bookbrew.customer.service.dto.UserDTO;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +33,7 @@ public class Customer {
     @NotBlank(message = "Birth date is required")
     private String birthDate;
 
-    @JsonManagedReference
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customer_id", nullable = false)
     private List<Address> addresses;
 

@@ -188,6 +188,18 @@ public class CustomerService {
     }
 
     @Transactional
+    public void deleteCustomer(Long customerId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + customerId));
+
+        UserDTO currentUserDTO = userClient.getUserById(customer.getUserId());
+
+        customerRepository.deleteById(customerId);
+
+        userClient.deleteUser(currentUserDTO.getId());
+    }
+
+    @Transactional
     public CustomerDTO updateAddress(Long customerId, Long addressId, AddressUpdateDTO newAddress) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + customerId));
@@ -215,6 +227,23 @@ public class CustomerService {
         addressRepository.save(address);
 
         return findById(customer.getId());
+    }
+
+    @Transactional
+    public void deleteCustomerAddress(Long customerId, Long addressId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + customerId));
+
+        Address addressToDelete = addressRepository.findById(addressId)
+                .orElseThrow(() -> new ResourceNotFoundException("Address not found with id: " + addressId));
+
+        if (!customer.getAddresses().contains(addressToDelete)) {
+            throw new ResourceNotFoundException("Address does not belong to this customer");
+        }
+
+        customer.getAddresses().remove(addressToDelete);
+
+        customerRepository.save(customer);
     }
 
 }
