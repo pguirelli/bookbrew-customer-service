@@ -1,15 +1,10 @@
 package com.bookbrew.customer.service.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import com.bookbrew.customer.service.model.Address;
-
-public class CustomerUpdateDTO {
+public class UserResponseDTO {
 
     private Long id;
-
-    private Long userId;
 
     private String name;
 
@@ -25,13 +20,13 @@ public class CustomerUpdateDTO {
 
     private Boolean status;
 
-    private String birthDate;
+    private Long idProfile;
 
-    private List<Address> addresses;
-
-    private Long profileId;
+    private LocalDateTime creationDate;
 
     private LocalDateTime updateDate;
+
+    private LocalDateTime lastLoginDate;
 
     private LocalDateTime passwordUpdateDate;
 
@@ -41,14 +36,6 @@ public class CustomerUpdateDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -107,28 +94,20 @@ public class CustomerUpdateDTO {
         this.status = status;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public Long getIdProfile() {
+        return idProfile;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setIdProfile(Long idProfile) {
+        this.idProfile = idProfile;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public Long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public LocalDateTime getUpdateDate() {
@@ -137,6 +116,14 @@ public class CustomerUpdateDTO {
 
     public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public LocalDateTime getLastLoginDate() {
+        return lastLoginDate;
+    }
+
+    public void setLastLoginDate(LocalDateTime lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 
     public LocalDateTime getPasswordUpdateDate() {

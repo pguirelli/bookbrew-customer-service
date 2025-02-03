@@ -7,8 +7,11 @@ import java.util.List;
 public class ValidationError {
 
     private List<String> errors = new ArrayList<>();
+
     private LocalDateTime timestamp;
+
     private String message;
+
     private String path;
 
     public ValidationError(String message, List<String> errors, String path) {

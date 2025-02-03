@@ -5,8 +5,11 @@ import java.time.LocalDateTime;
 public class ErrorResponse {
 
     private String message;
+
     private LocalDateTime timestamp;
+
     private String details;
+
     private String path;
 
     public ErrorResponse(String message, String details, String path) {

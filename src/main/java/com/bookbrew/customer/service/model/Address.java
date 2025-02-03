@@ -1,7 +1,5 @@
 package com.bookbrew.customer.service.model;
 
-import java.util.Objects;
-
 import com.bookbrew.customer.service.custom.annotations.ZipCode;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -143,25 +141,4 @@ public class Address {
         this.customer = customer;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Address address = (Address) o;
-        return Objects.equals(street, address.street) &&
-                Objects.equals(number, address.number) &&
-                Objects.equals(zipCode, address.zipCode) &&
-                Objects.equals(neighborhood, address.neighborhood) &&
-                Objects.equals(city, address.city) &&
-                Objects.equals(state, address.state) &&
-                Objects.equals(country, address.country) &&
-                Objects.equals(complement, address.complement);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(street, number, zipCode, neighborhood, city, state, country, complement);
-    }
 }
