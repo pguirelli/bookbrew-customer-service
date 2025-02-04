@@ -266,7 +266,7 @@ public class CustomerService {
             throw new ResourceNotFoundException("Address does not belong to this customer");
         }
 
-        addressRepository.deleteById(addressId);
+        customer.getAddresses().remove(addressToDelete);
 
         customerRepository.save(customer);
     }
