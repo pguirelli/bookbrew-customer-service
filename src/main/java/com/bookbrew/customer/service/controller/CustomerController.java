@@ -41,6 +41,11 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findById(id));
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<CustomerSearchDTO> getCustomerByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(customerService.findCustomerByUserId(userId));
+    }
+
     @PostMapping
     public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(customerDTO));
@@ -48,7 +53,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomerSearchDTO> updateCustomer(@PathVariable Long id,
-            @Valid @RequestBody CustomerDTO customerUpdateDTO) {
+            @RequestBody CustomerDTO customerUpdateDTO) {
         return ResponseEntity.ok(customerService.update(id, customerUpdateDTO));
     }
 

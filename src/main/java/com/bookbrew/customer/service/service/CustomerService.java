@@ -380,4 +380,11 @@ public class CustomerService {
         return userDTO;
     }
 
+    public CustomerSearchDTO findCustomerByUserId(Long userId) {
+        Customer customer = customerRepository.findByUserId(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with user id: " + userId));
+
+        return convertToCustomerSearchDTO(customer);
+    }
+
 }
